@@ -20,7 +20,6 @@
     <script>
              document.getElementById("mybtn").onclick= ()=>
             {                   
-             
                var x= document.getElementById("city").value; 
                fetch(`http://api.weatherapi.com/v1/current.json?key=17d0a39c9fbb48baa5e70221201103&q=${x}`)
                .then(data=>{
