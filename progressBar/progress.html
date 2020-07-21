@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>Example of HTML progress Tag</title>
-</head>
-<body>
+  <head>
+    <title>Example of HTML progress Tag</title>
+    <style>
+      progress {
+        -webkit-appearance: none;
+        width: 50%;
+        height: 2rem;
+        border: 1px solid black;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      progress::-webkit-progress-bar {
+        background-color: rgb(232, 236, 234);
+      }
+      progress::-webkit-progress-value {
+        background-color: red;
+      }
+      progress::-moz-progress-bar {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
     <h2>Task Progress</h2>
-	<p>Progress: <progress id="bar" value="0" max="10"><span>0</span>%</progress></p>
-	<script type="text/javascript">
-		var i = 0;
-		var progressBar = document.getElementById("bar");
-		function countNumbers(){
-			if(i < 10){
-				i = i + 1;
-				progressBar.value = i;
-				// For browsers that don't support progress tag
-				progressBar.getElementsByTagName("span")[0].textContent = i;
-			}
-			// Wait for sometime before running this script again
-			setTimeout("countNumbers()", 500);
-		}
-		countNumbers();
-	</script>
-</body>
+    <progress id="bar" max="100" value="5"></progress>
+    <br /><br />
+    <button>Click</button>
+    <script>
+      setInterval(() => {
+        document.getElementsByTagName("progress")[0].value =
+          document.getElementsByTagName("progress")[0].value + 5;
+
+        if (document.getElementsByTagName("progress")[0].value == 100) {
+          document.getElementsByTagName("progress")[0].value = 5;
+        }
+      }, 300);
+    </script>
+  </body>
 </html>

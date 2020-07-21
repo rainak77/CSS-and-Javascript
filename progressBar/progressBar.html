@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .progress-bar {
+        margin: 50px;
+        width: 500px;
+        height: 3rem;
+        background-color: black;
+        border-radius: 2.5em;
+        color: white;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+      .progress-bar::before {
+        position: absolute;
+        content: attr(data-label);
+        width: calc(var(--width, 0) * 1%);
+        min-width: 2rem;
+        max-width: calc(100% - 2em);
+        padding: 0.5em;
+        background-color: teal;
+        border-radius: 1.5em;
+        left: 0.5em;
+        right: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="progress-bar"
+      style="--width: 10;"
+      data-label="Loading..."
+    ></div>
+
+    <script>
+      const progressbar = document.getElementsByClassName("progress-bar")[0];
+      setInterval(() => {
+        const computedStyle = getComputedStyle(progressbar);
+        const width = parseFloat(computedStyle.getPropertyValue("--width"));
+        progressbar.style.setProperty("--width", width + 1);
+
+      }, 50);
+    </script>
+  </body>
+</html>
